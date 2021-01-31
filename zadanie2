@@ -1,0 +1,23 @@
+
+ 
+with open('A.txt') as plik_a, open('B.txt') as plik_b:
+    plik_a_iterator = iter(plik_a)
+    plik_a_element = next(plik_a_iterator, False)
+ 
+    plik_b_iterator = iter(plik_b)
+    plik_b_element = next(plik_b_iterator, False)
+ 
+    while plik_a_element and plik_b_element:
+        plik_a_element = plik_a_element.strip()
+        plik_b_element = plik_b_element.strip()
+ 
+        if plik_a_element != plik_b_element:
+            roznice.append(plik_a_element)
+            plik_a_element = next(plik_a_iterator, False)
+ 
+        plik_a_element = next(plik_a_iterator, False)
+        plik_b_element = next(plik_b_iterator, False)
+ 
+with open('C.txt', 'w') as plik_c:
+    plik_c.write('\n'.join(roznice))
+    print(f"Byly {len(roznice)} pomiedzy plikami: {', '.join(roznice)}")
